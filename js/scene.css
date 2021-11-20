@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'Quantico';
+  src: url('../img/Quantico-Bold.ttf');
+
+}
+
+html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+			background-color:#FAFAFA;
+        }
+
+.titlehead{
+color:coral;
+}
+
+#renderCanvas {
+    position:absolute;
+	width: 100%;
+	height: 100%;
+  
+    align-items:center;
+	touch-action: none;
+}
+
+#loadingScreen {
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #BB464Bcc;
+    background: url('../img/pcload.jpg') no-repeat center center;
+    /* background-image:url('../img/加载图.jpg'); */
+     background-size:100% 100%; 
+    /* background-attachment:fixed;
+    /* background-repeat:no-repeat; */
+     /* z-index: 9999; */
+}
+#loadingScreen tx{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    color: rgb(236, 74, 128);
+    font-size: 20px;
+    text-align: center;
+    top:90%;
+    padding:0px;
+    margin:0px;
+    
+}
+#loadingScreen::before,
+#loadingScreen::after {
+content:"";
+display:block;
+height:16px;
+width: 50%;
+background-color: #1f4a59;
+position:absolute;
+bottom:50px;
+border-radius:6px;
+float: left;
+margin-left: 25%;
+}
+
+#loadingScreen::before {
+   box-shadow: 0 0 6px rgba(240, 89, 109, 0.2);
+}
+
+#loadingScreen::after {
+  background-image: linear-gradient(
+   90deg,
+   #0fbcf9,
+   #34e7e4
+  );
+  width: 0%;
+ }
+ @media screen and (max-width:800px){
+  #loadingScreen {
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    background-color: #BB464Bcc;
+    background: url('../img/加载图_mobile.jpg') no-repeat center center;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
+}

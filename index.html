@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
+    <mate name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>-Robot-</title>
+
+    <link rel="stylesheet" type="text/css" href="js/scene.css">
+    <script src="./js/babylon.js"></script>
+    <script src="./js/babylonjs.loaders.min.js"></script>
+    <script src="./js/demage.js"></script>
+    <script src="./js/demage_fur.js"></script>
+
+</head>
+
+<body>
+
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- 第二步: 创建容器 -->
+
+    <div id="loadingScreen">
+        <tx id="tx">default div text</tx>
+    </div>
+
+
+
+    <script>
+        var canvas, engine;
+
+        canvas = document.getElementById("renderCanvas");
+        engine = new BABYLON.Engine(canvas, true);
+
+        var loadingScreenDiv = window.document.getElementById("loadingScreen");
+        var loadingScreenTx = window.document.getElementById("tx");
+        loadingScreenDiv.style.display = "none";
+        function customLoadingScreen() {
+            //console.log("customLoadingScreen creation")
+
+        }
+        customLoadingScreen.prototype.displayLoadingUI = function () {
+            //console.log("customLoadingScreen loading")
+            loadingScreenTx.innerHTML = "loading";
+
+        };
+        customLoadingScreen.prototype.hideLoadingUI = function () {
+            //console.log("customLoadingScreen loaded")
+            loadingScreenTx.innerHTML = "complete";
+            loadingScreenDiv.style.display = "none";
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            if (BABYLON.Engine.isSupported()) {
+                //var loadingScreen = new customLoadingScreen();
+                // engine.loadingScreen = loadingScreen;
+                //engine.displayLoadingUI();
+               
+                createScene();
+               
+                var sUserAgent = navigator.userAgent.toLowerCase();
+                var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+                var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+                var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+                var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+                var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+                var bIsAndroid = sUserAgent.match(/android/i) == "android";
+                var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+                var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+                if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                    engine.setHardwareScalingLevel(0.5);
+                } else {
+                    engine.setHardwareScalingLevel(1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
